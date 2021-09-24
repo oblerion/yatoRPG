@@ -1,9 +1,7 @@
 local classe = newClass()
 stat_gene(classe)
 local timer = Timer()
-local env=""
---os.getenv(env)
---os.execute("echo "..love.system.getOS())
+
 return {
   load=function()
   
