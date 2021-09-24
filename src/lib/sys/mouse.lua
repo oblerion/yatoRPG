@@ -1,0 +1,12 @@
+Mouse={
+	x=0,
+	y=0,
+	w=10,
+	h=10,
+	btng=0,
+	btnm=0,
+	btnd=0,
+	update=function()
+		Mouse.x,Mouse.y,Mouse.btng,Mouse.btnd,Mouse.btnm=love.mouse.getX(),love.mouse.getY(),love.mouse.isDown(1),love.mouse.isDown(2),love.mouse.isDown(3)
+	end
+} 
