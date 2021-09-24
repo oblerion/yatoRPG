@@ -2,7 +2,7 @@
 io.stdout:setvbuf('no')
 --if arg[#arg] == "-debug" then require("mobdebug").start() end
 love.graphics.setDefaultFilter("nearest")
-addLib("sys")
+require("lib/sys")
 addLib("class")
 
 state.new("title")
