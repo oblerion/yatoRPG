@@ -54,7 +54,7 @@ end
 --    end
 --  end
 --end
-item.get=function(pname,plvl)
+items.get=function(pname,plvl)
   for j=1,#items do
     if(items[j].name==pname and items[j].lvl==plvl)then
       return items[j]
