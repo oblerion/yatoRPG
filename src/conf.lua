@@ -1,12 +1,12 @@
 
 function love.conf(t)
   t.version ="11.2"
-  t.window.title = "desnot4000 testfennetre"
+  t.window.title = "yatoRPG"
   t.window.width = 1000
   t.window.height = 900
   t.window.fullscreen = false 
- -- t.window.borderless = false         -- Remove all border visuals from the window (boolean)
-  t.window.icon=nil
+  --t.window.borderless = false         -- Remove all border visuals from the window (boolean)
+  t.window.icon="game.png"
   t.modules.audio = false           -- Enable the audio module (boolean)
   t.modules.data = true               -- Enable the data module (boolean)
   t.modules.event = true              -- Enable the event module (boolean)

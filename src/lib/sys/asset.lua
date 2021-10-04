@@ -1,4 +1,11 @@
 asset={font={}}
+-- all asset
+-- {"name.ext"}
+-- asset[name]
+-- spritesheet
+-- {"name.ext",whtile}
+-- asset[name].draw(id,px,py,rotation,scale)
+-- asset[name].drawMap(map,px,py,rotation,scale)
 asset.new=function(table)
 	function load_ext(name)
 		local dir = "asset/"..name
