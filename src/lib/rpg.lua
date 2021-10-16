@@ -1,10 +1,10 @@
-local add=function(c)
+local add; add=function(c)
   local path = "lib/rpg/"
   for _,v in pairs(c) do
     require(path..v)
   end
 end
-add({"player","class","stat","item"})
+add({"player","class","stat","item","GUI"})
 
 -- A FAIRE --
 
@@ -21,6 +21,11 @@ add({"player","class","stat","item"})
 -- x draw
 -- A GUI stat,inventaire,equip
 
+-- item :
+-- x Item()
+-- x print()
+-- x Effet()
+
 -- PLUS TARD --
 
 -- class :
@@ -30,6 +35,8 @@ add({"player","class","stat","item"})
 -- A newMut()
 -- x equipOf(item)
 -- x Getequip(type)
+-- A capacity_apply()
+-- A pouvoir_apply()
 
 -- ia, enemi : 
 -- A ia()

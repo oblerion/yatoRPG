@@ -1,10 +1,10 @@
-local add=function(c)
+local add;add =function(c)
   local path = "lib/sys/"
   for _,v in pairs(c) do
     require(path..v)
   end
 end
-add({"asset","btn","color","screen","state","text","mouse","canvas"})
+add({"string","asset","btn","color","screen","state","text","mouse","canvas"})
 --require("lib/sys/tiled")
 
 function Timer()
