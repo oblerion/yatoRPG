@@ -1,20 +1,16 @@
-asset.new({"Image11.png"})
 local xtitle=0
-local btn1 = Btn_img(100,100,asset["Image11.png"])
+local btn1 = sys.btn.img(100,100,sys.asset["Image11.png"])
 local ni=1
-local canvas = Canvas()
+local canvas = sys.canvas()
 canvas.set( function()
-  Color(rouge)
-  Text("yato RPG",24,23+xtitle,100)
-  love.graphics.draw(asset["Image11.png"],12,12)
-  Color(blanc)
-  Text("play",101,13)
+  sys.color.set("rouge")
+  sys.text("yato RPG",24,23+xtitle,100)
+  love.graphics.draw(sys.asset["Image11.png"],12,12)
+  sys.color.set("blanc")
+  sys.text("play",101,13)
 end)
 
 return {
-  load=function()
-   
-  end,
   init=function()
  
   end,
