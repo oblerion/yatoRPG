@@ -6,6 +6,8 @@ function love.conf(t)
   t.window.height = 900
   t.window.fullscreen = false 
   --t.window.borderless = false         -- Remove all border visuals from the window (boolean)
+  t.identity = t.window.title                    -- The name of the save directory (string)
+  t.appendidentity = false            -- Search files in source directory before save directory 
   t.window.icon="game.png"
   t.modules.audio = false           -- Enable the audio module (boolean)
   t.modules.data = true               -- Enable the data module (boolean)
