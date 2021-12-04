@@ -1,17 +1,17 @@
-local add; add=function(c)
-  local path = "lib/rpg/"
-  for _,v in pairs(c) do
-    require(path..v)
+  for _,v in pairs(sys.filesystem.getAll("lib/rpg")) do
+    require("lib/rpg/"..v:sub(0,v:len()-4))
   end
-end
-add({"player","class","stat","item","GUI"})
+
 
 -- A FAIRE --
 
 -- stat :
 -- x generator
 -- x print
--- A stat_equip() after equip
+-- x stat_equip() after equip
+-- x update_stat()
+  -- life
+  -- mana
 -- A attack()
 -- A defend()
 -- A miss()
@@ -19,12 +19,20 @@ add({"player","class","stat","item","GUI"})
 -- player :
 -- x move
 -- x draw
--- A GUI stat,inventaire,equip
+-- x GUI inventaire,equip
+  -- x move item
+  -- x equip to inventory
+  -- x inventory to equip
+-- x GUI mini
 
 -- item :
 -- x Item()
 -- x print()
 -- x Effet()
+
+-- anim :
+-- x demi epee
+-- x bouclier moyen
 
 -- PLUS TARD --
 
