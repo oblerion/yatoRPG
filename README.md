@@ -1,5 +1,6 @@
 # yatoRPG
-
+## statut 
+under work, in update.
 
 ## library [/lib]
 ### sys.lua [main loop and require lib for all game]
