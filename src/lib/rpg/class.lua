@@ -24,11 +24,14 @@ function newClass()
       attaque_min2=0,
       attaque_max2=0,
       defence=0,
-      resistance={--feu=0,--eau=0,
-      },
+      --resistance={--feu=0,--eau=0,
+      --},
       mana=0,
+      vie=0,
       vitesse=3
     },
+    vie=0,
+    mana=0,
     exp=0,
     lvl=1,
 		metrise={épée=0,lance=0,arc=0,baton=0,hache=0,bouclier=0,tome=0
@@ -44,55 +47,60 @@ function newClass()
     inventaire={}
 	}
   class.equipOf=function(pitem,pos)
-    if(class.equip[pos]==0)then
-      class.equip[pos]=pitem
-    elseif(type(class.equip[pos])=="table")then
-      table.insert(class.inventaire,class.equip[pos])
-      class.equip[pos]=pitem
-    end
+    class.equip[pos]=pitem
     class.update_stat_equip()
   end
-  class.update_stat_equip=function()
-    local attaque_bonus= function(class)
-      local kstatem = "attaque_min"
-      local kstatep = "attaque_max" 
-      for i=1,2 do
-        if(type(class.equip[i])=="table")then
-          if(i==2)then 
-            kstatem = "attaque_min2"
-            kstatep = "attaque_max2" 
-          end
-          if(class.equip[i].type==1)then
-            class.stat_equip[kstatem]=class.stat_equip[kstatem]+math.floor(class.stat.force/5)
-            class.stat_equip[kstatep]=class.stat_equip[kstatep]+math.floor(class.stat.force/5)
-          elseif(class.equip[i].type==2)then
-            if(class.stat_equip[kstatem]<0)then
-              class.stat_equip[kstatem]=class.stat_equip[kstatem]-math.floor(class.stat.magie/5)
-              class.stat_equip[kstatep]=class.stat_equip[kstatep]-math.floor(class.stat.magie/5)
-            else
-              class.stat_equip[kstatem]=class.stat_equip[kstatem]+math.floor(class.stat.magie/5)
-              class.stat_equip[kstatep]=class.stat_equip[kstatep]+math.floor(class.stat.magie/5)
-            end
-          end
+  class.unequipOf=function(pos)
+    class.addToInventory(class.equip[pos])
+    class.equip[pos]=0
+    class.update_stat_equip()
+  end
+  class.update_stat=function()
+    class.stat_equip.vie = 100+(class.stat.vie)
+    class.vie = class.stat_equip.vie
+    --class.stat_equip.mana = 0
+    class.mana = class.stat_equip.mana
+  end
+  class.addToInventory = function(item)
+    if(type(item)=="table")then
+      table.insert(class.inventaire,item)
+    end
+  end
+  class.delToInventory = function(item)
+    if(type(item)=="table")then
+      for n,v in pairs(class.inventaire)do
+        if(v.name == item.name and
+        v.lvl == item.lvl)then
+          table.remove(class.inventaire,n)
         end
       end
+    elseif(type(item)=="number")then
+      table.remove(class.inventaire,item)
     end
+  end
+  class.update_stat_equip=function()
+    for n,_ in pairs(class.stat_equip) do
+      class.stat_equip[n]=0
+    end
+
     for i=1,#class.equip do
       if(type(class.equip[i])=="table")then
         local litem = {}
         litem = class.equip[i]
+        -- for eatch effect item
         for n,v in pairs(litem.effet)do
           if(class.stat_equip[n]~=nil)then
-            if(i==2 and(n=="attaque_min"or n=="attaque_max"))then 
-              class.stat_equip[n.."2"]=litem.effet[n]
-            else
-              class.stat_equip[n]=v
-            end
+              class.stat_equip[n]=class.stat_equip[n]+v
           end
         end
       end
     end
-    attaque_bonus(class)
+    class.update_stat()
+  end
+  
+  class.getPta=function(type)
+    local pitem = class.getEquip(type)
+    return math.random(pitem.effet.pta_min,pitem.effet.pta_max)
   end
 
   class.getEquip=function(type)
@@ -100,15 +108,6 @@ function newClass()
       return class.equip[type]
     end
     return 0
-  end
-  class.print_equip=function()
-    --print("equip","type")
-    for n,v in pairs(class.equip)do
-      if(v ~= 0)then
-        --print(v.name,n)
-        --v.print()
-      end
-    end
   end
   class.setCapacitee=function(ptable)
     for i=1,#ptable do
