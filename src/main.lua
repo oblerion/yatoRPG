@@ -5,9 +5,11 @@ love.graphics.setDefaultFilter("nearest")
 require("lib/sys")
 require("lib/rpg")
 
-state.new("title")
-state.new("game")
-state.set("title")
+sys.asset.new(sys.filesystem.getAll("asset"))
+--sys.state.new("title")
+sys.state.new("game")
+sys.state.new("editor_map")
+sys.state.set("game")
 
 
 
